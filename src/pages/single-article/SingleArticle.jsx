@@ -86,7 +86,7 @@ const SingleArticle = () => {
                   />
                 </div>
               </div>
-              {singleArticle.article.author.username === user.username ? (
+              {singleArticle.article.author.username === user?.username ? (
                 <>
                   <Popconfirm
                     title="Delete the task"
