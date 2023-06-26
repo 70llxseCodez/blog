@@ -1,0 +1,88 @@
+.article {
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 40px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.0197);
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  & textarea {
+    resize: none;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    font-size: 16px;
+    &::placeholder {
+      color: rgb(183, 183, 183);
+    }
+  }
+  & label {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 4px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    &::placeholder {
+      color: rgb(183, 183, 183);
+    }
+  }
+  &__tags {
+    display: flex;
+  }
+  &__button {
+    background-color: rgba(24, 144, 255, 1);
+    color: #fff;
+    border: none;
+    width: 300px;
+    padding: 8px 16px 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.tags {
+  &__input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    & input {
+      padding: 8px;
+      width: 300px;
+      border-radius: 4px;
+      border: 1px solid rgba(217, 217, 217, 1);
+      font-size: 16px;
+      &::placeholder {
+        color: rgb(183, 183, 183);
+      }
+      margin-right: 10px;
+    }
+  }
+  &__delete {
+    cursor: pointer;
+    border: 1px solid rgba(245, 34, 45, 1);
+    color: rgba(245, 34, 45, 1);
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-size: 16px;
+  }
+  &__add {
+    border: 1px solid rgba(24, 144, 255, 1);
+    padding: 8px 20px;
+    color: rgba(24, 144, 255, 1);
+    align-self: flex-end;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
