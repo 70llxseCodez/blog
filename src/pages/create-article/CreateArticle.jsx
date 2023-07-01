@@ -31,7 +31,7 @@ const CreateArticle = () => {
   } = JSON.parse(localStorage.getItem('state'));
   const submit = (data) => {
     reset();
-    const tags = data.tagList.map((item) => (item.value?.length > 0 ? item.value : null));
+    const tags = data.tagList.map((item) => (item.value?.length > 0 ? item.value : 'none'));
     const articleObj = { ...data, tagList: tags, createdAt: new Date() };
     dispatch(fetchAddArticle(articleObj, user.token));
   };

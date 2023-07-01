@@ -14,8 +14,8 @@ export const articleReducer = (state = initialState, action) => {
       };
     case ADD_ARTICLES:
       return {
+        articles: state.articles,
         error: action.error,
-        articles: [action.payload.articles, ...state.articles],
       };
     default:
       return state;

@@ -44,10 +44,10 @@ const SingleArticle = () => {
                 <span> {singleArticle.article.favoritesCount}</span>
               </div>
               <div style={style.article__tags}>
-                {singleArticle.article.tagList?.length
-                  ? singleArticle.article.tagList?.map((item, index) => (
+                {singleArticle.article.tagList.length
+                  ? singleArticle.article.tagList.map((item, index) => (
                       <p key={index} className={style.article__tag}>
-                        {item.split(' ').slice(0, 5).join(' ')}
+                        {item?.split(' ')?.slice(0, 5).join(' ')}
                       </p>
                     ))
                   : null}
