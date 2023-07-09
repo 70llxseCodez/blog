@@ -11,8 +11,10 @@ import style from './Home.module.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { user } = JSON.parse(localStorage.getItem('state'));
+  const data = user ? user?.user?.token : false;
   useEffect(() => {
-    dispatch(fetchArticles());
+    dispatch(fetchArticles(data));
   }, []);
   const { articles, error } = useSelector(getArticles);
   if (error) {
@@ -33,7 +35,7 @@ const Home = () => {
           onChange={(number) => {
             window.scrollTo({ top: 0 });
 
-            dispatch(fetchArticles(number));
+            dispatch(fetchArticles(user.user ? user.user.token : false, number));
           }}
           className={style.home__pagination}
           defaultCurrent={1}

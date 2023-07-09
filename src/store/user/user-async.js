@@ -1,7 +1,6 @@
 import { actionLoginUser, actionRegisterUser, actionUpdateUser } from './user-actions';
 
 export const fetchRegisterUser = (userObj) => {
-  console.log(userObj);
   return async (dispatch) => {
     try {
       const res = await fetch('https://blog.kata.academy/api/users', {
@@ -9,10 +8,14 @@ export const fetchRegisterUser = (userObj) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user: userObj }),
       });
+      if (!res.ok) {
+        throw new Error('already exist');
+      }
       const data = await res.json();
       dispatch(actionRegisterUser(data.user, false));
+      location.href = '/';
     } catch (err) {
-      console.log(err);
+      alert(err);
       dispatch(actionRegisterUser(null, true));
     }
   };
@@ -31,7 +34,7 @@ export const fetchLoginUser = (userObj) => {
       dispatch(actionLoginUser(data.user, false));
       window.location.href = '/';
     } catch (err) {
-      console.log(err);
+      alert(err);
       dispatch(actionLoginUser(null, true));
     }
   };

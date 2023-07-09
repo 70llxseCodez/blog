@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { addFavourite, removeFavourite } from '../../store/articles/articles-async';
 
 import style from './Articles.module.scss';
 import heartIcon from './../../icons/heart.svg';
@@ -8,13 +11,36 @@ import activeHeartIcon from './../../icons/activeHeart.svg';
 
 const Articles = (props) => {
   const { title, description, createdAt, tagList, favorited, favoritesCount, author, slug } = props;
+  const dispatch = useDispatch();
+  const { user } = JSON.parse(localStorage.getItem('state'));
+
+  const addFav = useCallback(() => {
+    if (!favorited) {
+      sessionStorage.setItem(slug, true);
+
+      dispatch(addFavourite(slug, user.user.token));
+    } else {
+      sessionStorage.setItem(slug, false);
+
+      dispatch(removeFavourite(slug, user.user.token));
+    }
+  }, [slug, favorited]);
   return (
     <article className={style.article}>
       <div className={style.article__title}>
         <div className={style.article__left}>
           <div className={style.article__text}>
             <h3 style={{ maxWidth: '500px' }}>{title?.split(' ').slice(0, 15).join(' ')}</h3>
-            <img src={favorited ? activeHeartIcon : heartIcon} alt="heart icon" /> <span> {favoritesCount}</span>
+            {user.user ? (
+              <>
+                <img
+                  onClick={addFav}
+                  src={JSON.parse(sessionStorage.getItem(slug)) ? activeHeartIcon : heartIcon}
+                  alt="heart icon"
+                />
+                <span> {favoritesCount}</span>
+              </>
+            ) : null}
           </div>
           <div style={style.article__tags}>
             {tagList?.length
