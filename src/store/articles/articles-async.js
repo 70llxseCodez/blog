@@ -3,7 +3,8 @@ import { actionAddArticle, actionSetActicles } from './articles-actions';
 export const fetchArticles = (page = 1, limit = 5) => {
   return async (dispatch) => {
     try {
-      const res = await fetch(`https://blog.kata.academy/api/articles?limit=${limit}&offset=${page}`);
+      const initialOffset = (page - 1) * 5;
+      const res = await fetch(`https://blog.kata.academy/api/articles?limit=${limit}&offset=${initialOffset}`);
       if (!res.ok) {
         throw new Error('Error from network');
       }
