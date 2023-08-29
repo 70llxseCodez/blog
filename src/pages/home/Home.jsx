@@ -11,8 +11,9 @@ import style from './Home.module.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem('state')).user;
+  const user = JSON.parse(localStorage.getItem('state'));
   const data = user ? user?.user?.token : false;
+  console.log(data);
   useEffect(() => {
     dispatch(fetchArticles(data));
   }, []);
